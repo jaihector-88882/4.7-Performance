@@ -1,0 +1,35 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+print("<JaiHea8080>") 
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+print("YourStudentID")  
+
+
+students = [['Alice', 'Alice', 'Bob', 'Bob', 'Carol', 'Carol',
+             'David', 'David', 'Emma', 'Emma', 'Frank', 'Frank',
+             'Grace', 'Grace', 'Henry', 'Henry', 'Isla', 'Isla',
+             'Jack', 'Jack'],
+            ['Math', 'Science', 'Math', 'Science', 'Math', 'Science',
+             'Math', 'Science', 'Math', 'Science', 'Math', 'Science',
+             'Math', 'Science', 'Math', 'Science', 'Math', 'Science',
+             'Math', 'Science']]
+
+
+index = pd.MultiIndex.from_arrays(students, names=('Student', 'Subject'))
+
+
+df = pd.DataFrame({'Grade': [95, 88, 90, 82, 88, 91, 97, 85,
+                              92, 79, 88, 94, 93, 87, 91, 83,
+                              96, 90, 82, 88]}, index=index)
+print(df)
+
+averageGrade = df.groupby(by=["Subject"]).mean()
+print(averageGrade)
+averageGrade['Grade'].plot(kind='bar', color='steelblue')
+plt.xlabel("Average Grade by Subject")
+plt.xticks(rotation=0)
+plt.show()
